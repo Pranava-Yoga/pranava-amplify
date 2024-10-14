@@ -3,10 +3,24 @@ import Link from 'next/link';
 import Image from 'next/image';
 import styles from './Navbar.module.css';
 
-export function Navbar({ signOut, isAuthenticated, user }: { signOut: () => void, isAuthenticated: boolean, user?: { username: string } }) {
+export function Navbar({ 
+  signOut, 
+  isAuthenticated, 
+  user 
+}: { 
+  signOut: () => Promise<void>, 
+  isAuthenticated: boolean, 
+  user?: { username: string }
+}) {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => setIsOpen(!isOpen);
+
+  const handleSignOut = async () => {
+    await signOut();
+    toggleMenu();
+    // We'll use a regular anchor tag for redirection after sign out
+  };
 
   return (
     <nav className={styles.navbar}>
@@ -24,7 +38,18 @@ export function Navbar({ signOut, isAuthenticated, user }: { signOut: () => void
           {isAuthenticated ? (
             <>
               <li><span className={styles.welcomeMessage}>Welcome, {user?.username}</span></li>
-              <li><button onClick={() => { signOut(); toggleMenu(); }}>Sign out</button></li>
+              <li>
+                <a 
+                  href="/" 
+                  onClick={async (e) => {
+                    e.preventDefault();
+                    await handleSignOut();
+                    window.location.href = '/';
+                  }}
+                >
+                  Sign out
+                </a>
+              </li>
             </>
           ) : (
             <li><Link href="/login" onClick={toggleMenu}>Login</Link></li>
