@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Providers } from './providers'
+import Providers from './providers'
 import '../styles/globals.css'
 
 export const metadata: Metadata = {
@@ -14,7 +14,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="bg-white dark:bg-black text-black dark:text-white transition-colors duration-300">
+      <body>
         <Providers>{children}</Providers>
       </body>
     </html>
