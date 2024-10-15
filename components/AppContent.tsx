@@ -14,7 +14,7 @@ export function AppContent() {
 
   return (
     <>
-      <Navbar signOut={signOut} isAuthenticated={isAuthenticated} />
+      <Navbar signOut={signOut} isAuthenticated={isAuthenticated} user={user} />
       {isAuthenticated ? (
         <AuthenticatedContent user={user} />
       ) : (

@@ -30,7 +30,8 @@ export default function LoginPage() {
       <div className="flex justify-center items-center p-4 sm:p-6">
         <Authenticator
           components={components}
-          hideSignUp={true}
+          // Remove this line or set to false to show sign-up
+          // hideSignUp={true}
         >
           {({ signOut }) => (
             <div>

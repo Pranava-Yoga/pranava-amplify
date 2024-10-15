@@ -12,7 +12,13 @@ const navItems = [
   { name: 'Contact', href: '/contact' },
 ];
 
-export function Navbar({ signOut, isAuthenticated, user }) {
+interface NavbarProps {
+  signOut: () => void;
+  isAuthenticated: boolean;
+  user: any; // Replace 'any' with a more specific type if possible
+}
+
+export function Navbar({ signOut, isAuthenticated, user }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
