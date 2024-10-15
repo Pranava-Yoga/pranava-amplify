@@ -1,12 +1,17 @@
 "use client";
 
+import React, { ReactNode } from 'react';
 import { useAuthenticator } from '@aws-amplify/ui-react';
 import { useRouter } from 'next/navigation';
 import { Navbar } from './Navbar';
 import { Footer } from './Footer';
 import { ThemeToggle } from './ThemeToggle';
 
-export function PageWrapper({ children }) {
+interface PageWrapperProps {
+  children: ReactNode;
+}
+
+export function PageWrapper({ children }: PageWrapperProps) {
   const { user, signOut } = useAuthenticator((context) => [context.user]);
   const router = useRouter();
 
