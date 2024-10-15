@@ -1,13 +1,9 @@
-import { AdminDashboard } from './AdminDashboard';
-import { UserDashboard } from './UserDashboard';
-
 export function AuthenticatedContent({ user }: { user: any }) {
-  const isAdmin = user?.signInUserSession?.accessToken?.payload?.['cognito:groups']?.includes('Admin') || false;
-
+  // Temporarily return a placeholder content
   return (
     <div>
-      {isAdmin ? <AdminDashboard /> : <UserDashboard />}
+      <h1>Welcome, {user.username}</h1>
+      <p>This is the authenticated content area.</p>
     </div>
   );
 }
-
